@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{%block content%}
+ {% from "_macros.html" import render_field, render_input %}
+  <form action="/" method="post">
+    <div class="row control-group">
+      <div class="form-group">
+          {{ render_field(form.numCaja) }}
+      </div>
+      <input type="submit" value="Enviar">
+    </div>
+  </form>
+  {% if form.numCaja.data %}
+  <form action="/resultado" method="POST">
+    <div class="col-xd-6">
+    <h3>Cajas</h3>
+      {% for i in range(0, form.numCaja.data) %}
+      {{ render_input(name="tCaja-" ~ i) }}
+      {% endfor %}
+    </div>
+    <div class="mt-5 text-center">
+      <button
+          type="submit"
+      >
+          ENVIAR
+      </button>
+    </div>
+  </form>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{%block content%}
+<h2 class="text-center" style="color: Red;">Resultados</h2>
+    <hr>
+    <h5>Números</h5>
+    <ul>
+        {% for valor in valores %}
+            <li>{{ valor }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <h5>Número menor</h5>
+    <p class="fs-1">{{ minNum }}</p>
+    <hr>
+    <h5>Número mayor</h5>
+    <p class="fs-1">{{ maxNum }}</p>
+    <hr>
+
+    <h5>Promedio</h5>
+    <p>{{ promedio }}</p>
+    <hr>
+    <h5>Repetidos</h5>
+    <ul>
+        {% for key, value in repetidos %}
+        <li>
+            El número {{ key }} se repite {{ value }} veces
+        </li>
+        {% endfor %}
+    </ul>
+    <hr>
+{%endblock%}

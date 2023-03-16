@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{%block content%}
+  
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <ul class="container">
+          {% for message in messages %}
+              <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+{% endwith %}
+  {% from "_macros.html" import render_field %}
+  <form action="" method="post" novalidate>
+    {{form.csrf_token}}
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <div class="" style="display: flex;  flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;">
+      <h2>Nuevo color</h2>
+      <form method="POST">
+        {{form.csrf_token}}
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <label for="spanish_color">Color en español:</label>
+        <input type="text text-transform: lowercase" id="spanish_color" name="spanish_color">
+        <br>
+        <label for="english_color">Color en inglés:</label>
+        <input type="text text-transform: lowercase" id="english_color" name="english_color">
+        <br>
+        <input type="submit" value="Guardar">
+      </form>
+      
+    </div>
+  <div class="" style="display: flex;  flex-direction: row;">
+    <h2 style="margin-right: 10%;">Traducir un color</h2>
+    <form method="POST">
+      {{form.csrf_token}}
+      <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+      <div>
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color">
+      </div>
+      <div>
+        <input type="radio" id="english" name="language" value="english">
+        <label for="english">Inglés</label>
+      </div>
+      <div>
+        <input type="radio" id="spanish" name="language" value="spanish">
+        <label for="spanish">Español</label>
+      </div>
+      <input type="submit" value="Traducir">
+    </form>
+  </div>
+  </form>
+      <div style="text-align: center;">
+      {% if translation %}
+      <h3>Traducción: {{ translation }}</h3>
+      {% endif %}
+    </div>
+    {%endblock%}
